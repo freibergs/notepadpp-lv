@@ -25,15 +25,14 @@ if (-not (Test-Path "$wixPath\candle.exe")) {
     Remove-Item "$OutputDir\wix.zip"
 }
 
-# Download Notepad++ PORTABLE version
-Write-Host "Downloading Notepad++ x64 portable..." -ForegroundColor Yellow
+# Download Notepad++ version
+Write-Host "Downloading Notepad++ x64..." -ForegroundColor Yellow
 $nppUrl = "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.8.2/npp.8.8.2.portable.x64.zip"
 $nppZip = "$OutputDir\npp_portable.zip"
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest -Uri $nppUrl -OutFile $nppZip -UseBasicParsing
 
-# Extract portable version
-Write-Host "Extracting Notepad++ portable..." -ForegroundColor Yellow
+Write-Host "Extracting Notepad++..." -ForegroundColor Yellow
 $nppDir = "$OutputDir\NPP"
 Expand-Archive -Path $nppZip -DestinationPath $nppDir -Force
 Remove-Item $nppZip
@@ -285,7 +284,7 @@ INSTALLATION LOCATION:
 C:\Apps\Notepad++\
 
 FEATURES IMPLEMENTED:
-✓ Notepad++ x64 version (PORTABLE)
+✓ Notepad++ x64 version
 ✓ Latvian UI language (default)
 ✓ Automatic updates disabled
 ✓ Compare plugin installed
@@ -313,7 +312,6 @@ Basic UI: msiexec /x "Notepad++.msi" /qb
 
 KEY BENEFITS:
 - Installed in C:\Apps (no Program Files restrictions)
-- Portable configuration mode
 - All users get same configuration
 - doLocalConf.xml ensures local config usage
 - Enterprise-ready deployment
