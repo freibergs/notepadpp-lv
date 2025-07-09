@@ -83,7 +83,7 @@ $configXml = @'
 <NotepadPlus>
     <GUIConfigs>
       <GUIConfig name="ToolBar" visible="yes" fluentColor="0" fluentCustomColor="12873472" fluentMono="no">standard</GUIConfig>
-      <GUIConfig name="StatusBar">show</GUIConfig>
+      <GUIConfig name="StatusBar">hide</GUIConfig>
       <GUIConfig name="TabBar" dragAndDrop="yes" drawTopBar="yes" drawInactiveTab="yes" reduce="yes" closeButton="yes" pinButton="yes" showOnlyPinnedButton="no" buttonsOninactiveTabs="no" doubleClick2Close="no" vertical="no" multiLine="no" hide="no" quitOnEmpty="no" iconSetNumber="0"/>
       <GUIConfig name="ScintillaViewsSplitter">vertical</GUIConfig>
       <GUIConfig name="UserDefineDlg" position="undocked">hide</GUIConfig>
