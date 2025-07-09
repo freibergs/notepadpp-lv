@@ -91,7 +91,7 @@ $configXml = @'
       <GUIConfig name="AppPosition" x="0" y="0" width="1024" height="700" isMaximized="no"/>
       <GUIConfig name="FindWindowPosition" left="0" top="0" right="0" bottom="0" isLessModeOn="no"/>
       <GUIConfig name="FinderConfig" wrappedLines="no" purgeBeforeEverySearch="no" showOnlyOneEntryPerFoundLine="yes"/>
-      <GUIConfig name="noUpdate" intervalDays="15" nextUpdateDate="20990723" autoUpdateMode="0">yes</GUIConfig>
+      <GUIConfig name="noUpdate" intervalDays="15" nextUpdateDate="20250724" autoUpdateMode="0">yes</GUIConfig>
       <GUIConfig name="Auto-detection">yes</GUIConfig>
       <GUIConfig name="CheckHistoryFiles">no</GUIConfig>
       <GUIConfig name="TrayIcon">0</GUIConfig>
