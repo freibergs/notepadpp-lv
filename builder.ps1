@@ -50,11 +50,18 @@ if (Test-Path "$nppDir\localization\latvian.xml") {
     Write-Host "Latvian language file copied as nativeLang.xml" -ForegroundColor Green
 }
 
-# Copy 99er theme to root as stylers.xml
+# Copy 99er theme to root as stylers.xml and modify fontSize
 Write-Host "Setting up 99er theme as default..." -ForegroundColor Yellow
 if (Test-Path "$themePath") {
-    Copy-Item "$themePath" "$nppDir\stylers.xml" -Force
-    Write-Host "99er theme copied as stylers.xml" -ForegroundColor Green
+    # Read, modify fontSize, and save with UTF-8 NO BOM
+    Write-Host "Modifying fontSize to 32 in stylers.xml..." -ForegroundColor Yellow
+    $themeContent = Get-Content "$themePath" -Raw -Encoding UTF8
+    $themeContent = $themeContent -replace 'fontSize="10"', 'fontSize="32"'
+    
+    # Save with UTF-8 NO BOM
+    $utf8NoBom = New-Object System.Text.UTF8Encoding $false
+    [System.IO.File]::WriteAllText("$nppDir\stylers.xml", $themeContent, $utf8NoBom)
+    Write-Host "99er theme with fontSize 32 saved as stylers.xml (UTF-8 no BOM)" -ForegroundColor Green
 }
 
 # Download Compare plugin
