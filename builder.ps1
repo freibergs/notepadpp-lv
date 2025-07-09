@@ -74,6 +74,16 @@ Get-ChildItem -Path $tempDir -Include "*.dll" -Recurse | ForEach-Object {
 Remove-Item $tempDir -Recurse -Force
 Remove-Item $comparePath
 
+# Disable updater by renaming/removing updater files
+Write-Host "Disabling updater files..." -ForegroundColor Yellow
+$updaterFiles = @("$nppDir\updater\winGup.exe", "$nppDir\updater\libcurl.dll", "$nppDir\updater\gup.exe")
+foreach ($file in $updaterFiles) {
+    if (Test-Path $file) {
+        Rename-Item $file ($file + ".disabled") -Force
+        Write-Host "Disabled: $(Split-Path $file -Leaf)" -ForegroundColor Green
+    }
+}
+
 # Create config files in the installation directory
 Write-Host "Creating configuration files..." -ForegroundColor Yellow
 
