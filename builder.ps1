@@ -199,6 +199,7 @@ $productWxs = @'
       </Directory>
       
       <Directory Id="DesktopFolder" Name="Desktop" />
+      <Directory Id="SystemFolder" Name="System32" />
     </Directory>
     
     <!-- File Associations -->
@@ -239,9 +240,16 @@ $productWxs = @'
       <Component Id="CleanupFileExtensions" Guid="{EEEE5555-6666-7777-8888-999999999999}" Win64="yes">
         <RemoveRegistryKey Root="HKCU" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.txt" Action="removeOnInstall" />
         <RemoveRegistryKey Root="HKCU" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.log" Action="removeOnInstall" />
-        <RemoveRegistryKey Root="HKCU" Key="Software\Microsoft\Windows\Shell\Associations\UrlAssociations\txt\UserChoice" Action="removeOnInstall" />
-        <RemoveRegistryKey Root="HKCU" Key="Software\Microsoft\Windows\Shell\Associations\UrlAssociations\log\UserChoice" Action="removeOnInstall" />
+        <RemoveRegistryKey Root="HKCU" Key="Software\Microsoft\Windows\Shell\Associations\UrlAssociations\txt" Action="removeOnInstall" />
+        <RemoveRegistryKey Root="HKCU" Key="Software\Microsoft\Windows\Shell\Associations\UrlAssociations\log" Action="removeOnInstall" />
+        <RemoveRegistryKey Root="HKCU" Key="Software\Microsoft\Windows\CurrentVersion\ApplicationAssociationToasts" Action="removeOnInstall" />
+        <RemoveRegistryKey Root="HKCU" Key="Software\Classes\.txt" Action="removeOnInstall" />
+        <RemoveRegistryKey Root="HKCU" Key="Software\Classes\.log" Action="removeOnInstall" />
         <RegistryValue Root="HKCU" Key="Software\Notepad++\FileExtCleanup" Name="cleaned" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+      
+      <Component Id="RefreshSystem" Guid="{FFFF6666-7777-8888-9999-AAAAAAAAAAAA}" Win64="yes">
+        <RegistryValue Root="HKCU" Key="Software\Notepad++\Install" Name="refresh" Type="integer" Value="1" KeyPath="yes" />
       </Component>
     </DirectoryRef>
     
@@ -276,10 +284,17 @@ $productWxs = @'
       <ComponentRef Id="FileAssociations" />
       <ComponentRef Id="DisableUpdates" />
       <ComponentRef Id="CleanupFileExtensions" />
+      <ComponentRef Id="RefreshSystem" />
       <ComponentRef Id="ApplicationShortcut" />
       <ComponentRef Id="DesktopShortcut" />
       <ComponentGroupRef Id="HarvestedFiles" />
     </Feature>
+    
+    <CustomAction Id="RefreshIcons" Directory="SystemFolder" ExeCommand="ie4uinit.exe -ClearIconCache" Execute="deferred" Impersonate="yes" Return="ignore" />
+    
+    <InstallExecuteSequence>
+      <Custom Action="RefreshIcons" Before="InstallFinalize">NOT Installed</Custom>
+    </InstallExecuteSequence>
   </Product>
 </Wix>
 '@
