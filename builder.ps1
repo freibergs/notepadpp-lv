@@ -235,6 +235,12 @@ $productWxs = @'
           <RegistryValue Name="noUpdate" Type="integer" Value="1" KeyPath="yes" />
         </RegistryKey>
       </Component>
+      
+      <Component Id="CleanupFileExtensions" Guid="{EEEE5555-6666-7777-8888-999999999999}" Win64="yes">
+        <RemoveRegistryKey Root="HKCU" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.txt" Action="removeOnInstall" />
+        <RemoveRegistryKey Root="HKCU" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.log" Action="removeOnInstall" />
+        <RegistryValue Root="HKCU" Key="Software\Notepad++\FileExtCleanup" Name="cleaned" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
     </DirectoryRef>
     
     <!-- Start Menu Shortcut -->
@@ -267,6 +273,7 @@ $productWxs = @'
     <Feature Id="Complete" Title="Notepad++ Complete" Level="1">
       <ComponentRef Id="FileAssociations" />
       <ComponentRef Id="DisableUpdates" />
+      <ComponentRef Id="CleanupFileExtensions" />
       <ComponentRef Id="ApplicationShortcut" />
       <ComponentRef Id="DesktopShortcut" />
       <ComponentGroupRef Id="HarvestedFiles" />
@@ -306,6 +313,7 @@ FEATURES IMPLEMENTED:
 ✓ Automatic updates disabled
 ✓ Compare plugin installed
 ✓ File associations (.txt, .log)
+✓ Registry cleanup for .txt and .log file extensions
 ✓ 99er theme as DEFAULT
 ✓ Per-machine installation
 ✓ Desktop and Start Menu shortcuts
