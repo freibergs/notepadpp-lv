@@ -239,6 +239,8 @@ $productWxs = @'
       <Component Id="CleanupFileExtensions" Guid="{EEEE5555-6666-7777-8888-999999999999}" Win64="yes">
         <RemoveRegistryKey Root="HKCU" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.txt" Action="removeOnInstall" />
         <RemoveRegistryKey Root="HKCU" Key="Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.log" Action="removeOnInstall" />
+        <RemoveRegistryKey Root="HKCU" Key="Software\Microsoft\Windows\Shell\Associations\UrlAssociations\txt\UserChoice" Action="removeOnInstall" />
+        <RemoveRegistryKey Root="HKCU" Key="Software\Microsoft\Windows\Shell\Associations\UrlAssociations\log\UserChoice" Action="removeOnInstall" />
         <RegistryValue Root="HKCU" Key="Software\Notepad++\FileExtCleanup" Name="cleaned" Type="integer" Value="1" KeyPath="yes" />
       </Component>
     </DirectoryRef>
